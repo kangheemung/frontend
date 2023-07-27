@@ -13,6 +13,16 @@
   }
 }
 .posts{display: flex;}
+.users{
+  align-items: center;
+}
+.users_input{
+  display: center;
+  align-items: center;
+  margin-left:10px;
+
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -23,7 +33,130 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+body{
+  background-color:#DBE5E6;
+  object-fit: cover;
+  color: #004A54;
+  font-family: 'Mali', cursive;
+  min-height: 100vh;
+  font-size: large;
+}
 
+.notification:not(:last-child){
+  margin-bottom:0;
+}
+
+.header1{
+  color: #DBE5E6;
+  background-color:  #004A54; 
+  text-align: left;
+  font-family: 'Mali', cursive; 
+  padding-top: 5%;
+  padding-bottom: 5%; 
+  display: flex;
+  
+}
+.s_header{
+  font-size: x-large;    
+  color: whitesmoke;
+}
+.s_h_1{ 
+  color: whitesmoke;
+  font-weight: bolder;  
+  font-size:larger;
+  margin-left: 5%;
+  text-decoration:none;
+  display: flex; 
+}
+
+li {
+  list-style: none;
+  display: flex;
+}
+.signup{
+  width: 50%;
+  text-align: center;
+  border: solid 3px;
+  border-radius: 10px;
+  margin-top: 5%;
+  margin-left: 25%;
+  align-items: center;
+}
+
+.signup_body{
+  align-items: center;
+  background-color:whitesmoke;
+  padding-bottom: 1%;
+  border-radius: 10px;
+  text-decoration: none;
+}
+.signup_body a{
+  text-align: center;
+  text-decoration: none;  
+}
+.signup_body p{
+ 
+  text-align: center;
+  text-decoration: none;  
+}
+
+
+.body{
+  text-align: center;
+  
+}
+.button{
+  background-color: #004A54;
+  width: 50%;
+  height: 10%;
+  margin-top:2% ;
+  margin-bottom: 10%;
+  padding-top: 5%;
+  padding-bottom: 5%;
+  border: solid 1px;
+  font-size: large;
+  border-radius: 10%;
+  color:whitesmoke;
+}
+.login{
+  margin-bottom: 5%;
+  text-align: center;
+}
+.name_box{
+  width: 100%;
+  margin-top: 3%;   
+}
+.name{
+  width:20%;
+  margin-top: 3%; 
+}
+.bottom-text2 p{
+  font-size: x-small;
+}
+.sign_btn{
+  text-align: center;
+  
+ }
+.gender_box{
+  margin-top: 3%;
+}
+.u_mypage_body{
+  padding-top: 10%;
+  background-color: #626A67;
+  color: whitesmoke;
+  padding-bottom: 10%;
+  color: #DBE5E6;
+  text-decoration: none;
+  text-align: center;
+}
+.user_info{
+  text-align: center;
+}
+.user_info_left{
+  width: 70%;
+  margin:  0 auto; 
+  
+}
 .App-link {
   color: #61dafb;
 }
