@@ -4,7 +4,6 @@ import React from 'react'
 
 import { BrowserRouter,Route, Switch } from 'react-router-dom';
 
-import Button from './Button';
 import Home from './componets/Home'
 import Header from './componets/Header';
 import Content from './componets/Content';
@@ -13,21 +12,63 @@ import Posts from'./componets/railsPosts/Posts';
 import List from './componets/starwars/List';
 import Users from'./componets/railsUsers/Users';
 
+
 function App() {
+  const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
+  const [user, setUser] = useState({})
+  // 追加する
+  const handleLogin = (data) => {
+    setLoggedInStatus("ログインなう")
+    setUser(data.user)
+  }
+
+  // 追加
+  const handleLogout = () => {
+    setLoggedInStatus("未ログイン")
+    setUser({})
+  
+
+  // 追加
+  useEffect(() => {
+    checkLoginStatus()
+  })
+    // 追加
+    const checkLoginStatus = () => {
+      axios.get("http://35.73.195.40/logged_in", { withCredentials: true })
+       
+      .then(response => {
+
+        if (response.data.logged_in && loggedInStatus === "未ログイン") {
+          setLoggedInStatus("ログインなう")
+          setUser(response.data.user)
+        } else if (!response.data.logged_in && loggedInStatus === "ログインなう") {
+          setLoggedInStatus("未ログイン")
+          setUser({})
+        }
+        console.log("ログイン状況", response)
+      }).catch(error => {
+        console.log("ログインエラー", error)
+      })
+    }
   return (
     <>
         <Header /> 
         <main className="body">
             <Content />
-    
-           
             <BrowserRouter> 
                 <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/Dashbord" component={Dashbord} />
+                <Route path="/dashbord" component={Dashbord} />
                 <Route path="/users" component={Users}/>
-      
-
+                <Route
+                      exact path={"/"}
+                      render={props => (
+                      <Home { ...props } 
+                       handleLogin={handleLogin}
+                       handleLogout={handleLogout} 
+                       loggedInStatus={loggedInStatus} />
+                      )}
+                />
                 </Switch>
             </BrowserRouter> 
             
@@ -39,6 +80,6 @@ function App() {
         </main>
         <footer></footer>
     </>
-  )
+  )}
 }
 export default App;

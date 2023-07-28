@@ -12,24 +12,24 @@ export default function Users(props) {
     
     const handleSubmit = (event) => {
              //追加
-        axios.post("http://35.73.195.40/signup",
+        axios.post("http://35.73.195.40/login",
              {
                  user: {
-                    name:name,
                      email: email,
                      password: password,
-                     password_confirmation: passwordConfirmation
+                    
                  }
              },
              { withCredentials: true }
          ).then(response => {
-               // 追加
-            if (response.data.status === 'created') {
-               props.handleSuccessfulAuthentication(response.data)
-            }
-             console.log("users res", response)
+                // 変更
+                if (response.data.logged_in) {
+                    props.handleSuccessfulAuthentication(response.data)
+                }
+
+             console.log("login response", response)
          }).catch(error => {
-             console.log("users error", error)
+             console.log("login responser", error)
          })
          event.preventDefault()
  

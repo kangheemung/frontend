@@ -10,13 +10,13 @@ const Header =()=>{
             <li>workshopを見に行く</li>
             <li> "ログアウト"</li>
           </div>
-        </div>
-        <div class="header1">
-        <span>ログインしましょう！</span>
-        <li> top</li>
-        <li>ログイン</li>
-        <li>"会員登録"</li>
-        <li>workshop見に行く</li>
+          <div class="s_header">
+            <span>ログインしましょう！</span>
+            <li> top</li>
+            <li>ログイン</li>
+            <li>"会員登録"</li>
+            <li>workshop見に行く</li>
+          </div>
         </div>
     </>
 
