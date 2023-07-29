@@ -15,7 +15,7 @@ export default function Users(props) {
         axios.post("http://35.73.195.40/signup",
              {
                  user: {
-                    name:name,
+                     name:name,
                      email: email,
                      password: password,
                      password_confirmation: passwordConfirmation

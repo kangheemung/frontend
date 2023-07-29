@@ -1,17 +1,18 @@
 import './App.css';
-import React from 'react'
+import React, { useState ,useEffect} from 'react';
 
+import axios from "axios";
 
-import { BrowserRouter,Route, Switch } from 'react-router-dom';
+import { BrowserRouter,Route, Switch} from 'react-router-dom';
 
 import Home from './componets/Home'
 import Header from './componets/Header';
 import Content from './componets/Content';
-import Dashbord from './componets/Dashbord';
+import Dashboard  from './componets/Dashboard';
 import Posts from'./componets/railsPosts/Posts';
 import List from './componets/starwars/List';
 import Users from'./componets/railsUsers/Users';
-
+import Login from'./componets/railsUsers/Login';
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
@@ -24,9 +25,9 @@ function App() {
 
   // 追加
   const handleLogout = () => {
-    setLoggedInStatus("未ログイン")
-    setUser({})
-  
+        setLoggedInStatus("未ログイン")
+        setUser({})}
+      
 
   // 追加
   useEffect(() => {
@@ -58,21 +59,30 @@ function App() {
             <BrowserRouter> 
                 <Switch>
                 <Route exact path="/" component={Home} />
-                <Route path="/dashbord" component={Dashbord} />
+                <Route path="/dashboard" component={Dashboard} />
                 <Route path="/users" component={Users}/>
                 <Route
                       exact path={"/"}
                       render={props => (
-                      <Home { ...props } 
+                      <Home 
+                      { ...props } 
                        handleLogin={handleLogin}
                        handleLogout={handleLogout} 
-                       loggedInStatus={loggedInStatus} />
+                       loggedInStatus={loggedInStatus} 
+                       />
                       )}
-                />
-                </Switch>
+                 />
+                    <Route
+                      exact path={"/"}
+                      render={props => (
+                      <Dashboard { ...props } loggedInStatus={loggedInStatus} />
+                            )} 
+                        />
+              </Switch>
             </BrowserRouter> 
             
             <div className="posts">
+              
               <List />
               <Posts />
               
@@ -81,5 +91,5 @@ function App() {
         <footer></footer>
     </>
   )}
-}
+
 export default App;

@@ -4,12 +4,10 @@ import React, { useState } from 'react';
 import axios from "axios"
 
 
-export default function Users(props) {
-    const [name, setName] = useState("")
+export default function Login(props) {
+    
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const [passwordConfirmation, setPasswordConfirmation] = useState("")
-    
     const handleSubmit = (event) => {
              //追加
         axios.post("http://35.73.195.40/login",
@@ -22,12 +20,11 @@ export default function Users(props) {
              },
              { withCredentials: true }
          ).then(response => {
+            if (response.data.logged_in) {
+                props.handleSuccessfulAuthentication(response.data)
+            }
                 // 変更
-                if (response.data.logged_in) {
-                    props.handleSuccessfulAuthentication(response.data)
-                }
-
-             console.log("login response", response)
+                console.log("login response: ", response)
          }).catch(error => {
              console.log("login responser", error)
          })
@@ -43,18 +40,8 @@ export default function Users(props) {
              {/* onSubmit、onChangeイベントを追加 */}
             <form onSubmit={handleSubmit} className='users'>
                 <div className='signup_body'> 
-                <h2>新規登録</h2>    
-                    <p><lable >Name:</lable></p>
-                    <p>
-                    <input 
-                            type="name"
-                            name="name"
-                            placeholder="name"
-                            value={name}
-                            onChange={event => setName(event.target.value)}
-
-                        />
-                    </p>
+                <p>ログイン</p>
+                
                     <p><lable >Email</lable></p>
                     <p>   
                     <input 
@@ -78,17 +65,9 @@ export default function Users(props) {
                         />
                     </p> 
                     <p><lable >Password_confirmation</lable></p>
-                    <p>    
-                        <input
-                            type="password"
-                            name="password_confirmation"
-                            placeholder="確認用パスワード"
-                            value={passwordConfirmation}
-                            onChange={event => setPasswordConfirmation(event.target.value)}
-                        />
-                    </p>  
+              
                     <p>
-                    <button className="button "type="submit">登録</button>
+                    <button className="button "type="submit">ログイン</button>
                     </p>     
                 </div>
             </form>    
