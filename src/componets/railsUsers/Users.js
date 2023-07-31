@@ -10,31 +10,30 @@ export default function Users(props) {
     const [password, setPassword] = useState("")
     const [passwordConfirmation, setPasswordConfirmation] = useState("")
     
-    const handleSubmit = (event) => {
+    const handleSubmit = (e) => {
+        e.preventDefault()
              //追加
-        axios.post("http://35.73.195.40/signup",
+        axios.post("http://35.73.195.40:8080/signup",
              {
-                 user: {
-                     name:name,
-                     email: email,
-                     password: password,
-                     password_confirmation: passwordConfirmation
-                 }
+                user: {
+                    email: email,
+                    password: password,
+                    password_confirmation: passwordConfirmation
+                },
+                headers:{
+                    'Content-Type':'application/json'}   
              },
              { withCredentials: true }
          ).then(response => {
-               // 追加
-            if (response.data.status === 'created') {
-               props.handleSuccessfulAuthentication(response.data)
-            }
+           
              console.log("users res", response)
          }).catch(error => {
              console.log("users error", error)
          })
-         event.preventDefault()
+         e.preventDefault()
  
-    }
     
+        }
 
 
     return (

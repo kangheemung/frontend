@@ -10,7 +10,7 @@ export default function Login(props) {
     const [password, setPassword] = useState("")
     const handleSubmit = (event) => {
              //追加
-        axios.post("http://35.73.195.40/login",
+        axios.post("http://35.73.195.40:8080/login",
              {
                  user: {
                      email: email,

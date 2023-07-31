@@ -1,10 +1,7 @@
 import './App.css';
 import React, { useState ,useEffect} from 'react';
-
 import axios from "axios";
-
 import { BrowserRouter,Route, Switch} from 'react-router-dom';
-
 import Home from './componets/Home'
 import Header from './componets/Header';
 import Content from './componets/Content';
@@ -12,7 +9,7 @@ import Dashboard  from './componets/Dashboard';
 import Posts from'./componets/railsPosts/Posts';
 import List from './componets/starwars/List';
 import Users from'./componets/railsUsers/Users';
-import Login from'./componets/railsUsers/Login';
+
 
 function App() {
   const [loggedInStatus, setLoggedInStatus] = useState("未ログイン")
@@ -22,20 +19,17 @@ function App() {
     setLoggedInStatus("ログインなう")
     setUser(data.user)
   }
-
   // 追加
   const handleLogout = () => {
         setLoggedInStatus("未ログイン")
         setUser({})}
-      
-
   // 追加
   useEffect(() => {
     checkLoginStatus()
   })
     // 追加
     const checkLoginStatus = () => {
-      axios.get("http://35.73.195.40/logged_in", { withCredentials: true })
+      axios.get("http://35.73.195.40:8080/logged_in", { withCredentials: true })
        
       .then(response => {
 
